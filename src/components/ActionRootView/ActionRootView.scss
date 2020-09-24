@@ -1,0 +1,14 @@
+@import "../../scss/common.scss";
+
+.debug-view-setting {
+    width: 100%;
+    bottom: 0px;
+    padding: 0 4px 4px 4px;
+    position: fixed;
+}
+
+.report-bug {
+    &:hover {
+        text-decoration: underline;
+    }
+}

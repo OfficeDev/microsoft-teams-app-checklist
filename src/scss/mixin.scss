@@ -1,0 +1,52 @@
+@mixin main-margin {
+  margin-top: $parent-margin-top;
+  padding: $parent-padding-top $parent-padding-right $parent-padding-bottom $parent-padding-left;
+  @media only screen and (max-width: 480px) {
+    margin-top: $parent-margin-top-mobile;
+    padding: $parent-padding-top $parent-padding-right-mobile $parent-padding-bottom $parent-padding-left-mobile;
+  }
+}
+
+@mixin theme-based-bg {
+  .theme-dark.client-android & {
+    background-color: black;
+  }
+  .theme-default.client-ios & {
+    background-color: white;
+  }
+}
+
+@mixin resolve-dir($property, $value) {
+  @at-root {
+    body[dir="ltr"]#{&},
+    body[dir="ltr"] & {
+      #{$property}: $value;
+    }
+    body[dir="rtl"]#{&},
+    body[dir="rtl"] & {
+      #{swap-property-dir($property)}: $value;
+    }
+  }
+}
+
+@function swap-property-dir($property) {
+  @if $property == left {
+    @return right;
+  } @else if $property == right {
+    @return left;
+  } @else if $property == margin-left {
+    @return margin-right;
+  } @else if $property == margin-right {
+    @return margin-left;
+  } @else if $property == padding-left {
+    @return padding-right;
+  } @else if $property == padding-right {
+    @return padding-left;
+  } @else if $property == border-left {
+    @return border-right;
+  } @else if $property == border-right {
+    @return border-left;
+  } @else {
+    @error "Unknown property name to handle direction. Please check if '#{$property}' is handled or not.";
+  }
+}

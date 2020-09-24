@@ -1,0 +1,65 @@
+@import "../../scss/common.scss";
+
+.checklist-input-box {
+  flex-grow: 1;
+}
+
+.delete-hidden {
+  visibility: hidden !important;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+}
+
+.checklist-item-container {
+  padding-bottom: 8px;
+}
+
+.checklist-container {
+  padding: 0;
+}
+
+.checklist-checkbox {
+  column-gap: unset !important;
+}
+
+.checkbox-gap {
+  @include resolve-dir(padding-right, 5px);
+}
+
+.checklist-input-completed-item {
+  border-bottom-color: transparent !important;
+}
+
+.item-subtitle {
+  display: flex;
+  @include resolve-dir(padding-left, 40px);
+  .theme-default & {
+    color: $black-color !important;
+  }
+}
+
+.item-content {
+  .client-mobile & {
+    font-size: 16px;
+  }
+}
+
+$trash-icon-padding: 10px;
+$trash-icon-size: 16px; // size of default icon size
+.icon-padding {
+  @include resolve-dir(padding-right, calc(#{$trash-icon-size} + 2 * #{$trash-icon-padding}) !important);
+}
+
+.choice-trash-can {
+  @include resolve-dir(right, 0px !important);
+  padding: $trash-icon-padding;
+  &:focus {
+    outline-width: 1px !important;
+  }
+  &:hover {
+    color: $brand-color !important;
+  }
+}

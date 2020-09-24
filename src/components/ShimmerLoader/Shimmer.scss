@@ -1,0 +1,84 @@
+.shimmer-container {
+  position: relative;
+}
+
+.container-shimmer-loader {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.container-shimmer-child {
+  visibility: hidden;
+}
+
+.w80 {
+  width: 80%;
+}
+
+.card {
+  height: 100%;
+  margin: 0px auto;
+}
+
+.profilePic {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+
+.comment {
+  height: 10px;
+  border-radius: 8px;
+}
+
+.height20 {
+  height: 20px;
+}
+
+.comment-full {
+  height: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.animate {
+  animation: shimmer 2s infinite;
+  body[dir="rtl"] & {
+    animation: shimmer-rtl 2s infinite;
+  }
+  background: linear-gradient(to right, #f2f2f2 35%, #e2e2e2 50%, #f2f2f2 65%);
+  background-size: 1000px 100%;
+  .theme-dark & {
+    background: linear-gradient(to right, #323232 35%, #424242 50%, #323232 65%);
+    background-size: 1000px 100%;
+  }
+  .theme-contrast & {
+    background: linear-gradient(to right, #ffffff 35%, #000000 50%, #ffffff 65%);
+    background-size: 1000px 100%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes shimmer-rtl {
+  0% {
+    background-position: 1000px 0;
+  }
+  100% {
+    background-position: -1000px 0;
+  }
+}

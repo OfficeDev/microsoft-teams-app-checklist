@@ -1,0 +1,73 @@
+{
+    "defaultSeverity": "error",
+    "jsRules": {},
+    "rules": {
+        "no-banned-terms": true,
+        "no-delete-expression": true,
+        "no-document-domain": true,
+        "no-disable-auto-sanitization": true,
+        "no-duplicate-parameter-names": true,
+        "no-exec-script": true,
+        "function-constructor": true,
+        "no-octal-literal": true,
+        "variable-name": true,
+        "no-string-based-set-immediate": true,
+        "no-string-based-set-interval": true,
+        "no-string-based-set-timeout": true,
+        "no-eval": true,
+        "no-document-write": true,
+        "no-http-string": true,
+        "no-inner-html": true,
+        "react-no-dangerous-html": true,
+        "no-var-keyword": true,
+        "semicolon": true,
+        "curly": true,
+        "no-consecutive-blank-lines": true,
+        "no-unused-expression": true,
+        "no-unused-variable": true,
+        "no-conditional-assignment": true,
+        "no-trailing-whitespace": true,
+        "indent": [
+            true,
+            "spaces",
+            4
+        ],
+        "one-line": [
+            true,
+            "check-catch",
+            "check-finally",
+            "check-else",
+            "check-open-brace",
+            "check-whitespace"
+        ],
+        "quotemark": [
+            true,
+            "double",
+            "avoid-escape"
+        ],
+        "align": [
+            true,
+            "parameters",
+            "statements"
+        ],
+        "member-ordering": [
+            true,
+            {
+                "order": [
+                    "public-static-field",
+                    "public-instance-field",
+                    "private-static-field",
+                    "private-instance-field",
+                    "public-constructor",
+                    "private-constructor",
+                    "public-instance-method",
+                    "protected-instance-method",
+                    "private-instance-method"
+                ]
+            }
+        ]
+    },
+    "rulesDirectory": [
+        "./node_modules/tslint-microsoft-contrib"
+    ]
+}

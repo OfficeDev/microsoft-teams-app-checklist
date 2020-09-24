@@ -1,0 +1,32 @@
+// color
+// when you add a new color here, add it in Constants.tsx too so that it can be referenced in ts files
+$brand-color: #6264a7;
+$gray-color: #9b9b9b;
+$default-theme-gray-color: #605e5c;
+$default-theme-white-color: #fff;
+$black-color: #252423;
+$error-red: #c4314b;
+$yellow-color: #ffc312;
+$desktop-focus-outline-color: #605e5c;
+
+// spacing
+$parent-margin: 32px;
+$parent-padding-left: 32px;
+$parent-padding-right: 32px;
+$parent-margin-top: 16px;
+$parent-margin-bottom: 16px;
+$parent-padding-top: 16px;
+$parent-padding-bottom: 16px;
+
+$parent-margin-top-mobile: 0px;
+$parent-padding-left-mobile: 16px;
+$parent-padding-right-mobile: 16px;
+
+$footer-height: 72px;
+$header-height: 72px;
+
+$nav-bar-height: 48px;
+
+// font
+$font-size-large: 24px;
+$font-size-large-mobile: 20px;

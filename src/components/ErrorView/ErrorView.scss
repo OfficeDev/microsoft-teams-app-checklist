@@ -1,0 +1,30 @@
+.error-view-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+.error-view-image {
+    height: 160px;
+    width: 160px;
+    margin-bottom: 16px;
+}
+
+.error-view-title {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.error-view-subtitle {
+    font-size: 12px;
+    text-align: center;
+}
+
+.error-view-button {
+   position: fixed !important;
+   bottom: 32px;
+   right: 32px;
+}

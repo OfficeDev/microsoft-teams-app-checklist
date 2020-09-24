@@ -1,0 +1,22 @@
+@import "../../scss/common.scss";
+
+.invalid > input {
+  border-bottom: 1px solid $error-red;
+}
+
+.multiline-input-box {
+  & span {
+    line-height: normal;
+    &:empty:before {
+      content: attr(placeholder);
+      color: #979593;
+      display: block;
+    }
+  }
+  & textarea {
+    resize: none;
+    line-height: normal;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+}

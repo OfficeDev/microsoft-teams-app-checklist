@@ -1,0 +1,14 @@
+@import "../../scss/common.scss";
+
+.hint-text {
+    padding-top: 8px;
+}
+
+.due-date-dialog { 
+    width: min-content !important;
+    @extend .dialog-base;
+} 
+
+.header-container {
+    justify-content: space-between;
+}
