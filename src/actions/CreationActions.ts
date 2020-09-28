@@ -4,7 +4,7 @@
 import { action } from "satcheljs";
 import { ChecklistItem } from "../utils";
 import * as actionSDK from "@microsoft/m365-action-sdk";
-import {ProgressState} from '../utils/SharedEnum';
+import {ProgressState} from "../utils/SharedEnum";
 
 export enum ChecklistCreationAction {
     initialize = "initialize",

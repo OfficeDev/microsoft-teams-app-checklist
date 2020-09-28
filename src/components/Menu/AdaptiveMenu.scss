@@ -1,90 +1,90 @@
 @import "../../scss/common.scss";
 
 .actionsheet-view-bg {
-  position: fixed;
-  flex: 1;
-  width: 100%;
-  height: 100%;
-  @include resolve-dir(left, 0px);
-  top: 0px;
-  z-index: 25;
-  color: $black-color;
-  background-color: rgba(37, 36, 35, 0.4);
-  .theme-dark & {
-    color: rgb(255, 255, 255);
-    background-color: rgba(32, 31, 31, 0.7);
-  }
+    position: fixed;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    @include resolve-dir(left, 0px);
+    top: 0px;
+    z-index: 25;
+    color: $black-color;
+    background-color: rgba(37, 36, 35, 0.4);
+    .theme-dark & {
+        color: rgb(255, 255, 255);
+        background-color: rgba(32, 31, 31, 0.7);
+    }
 }
 .actionsheet-trigger-bg {
-  width: fit-content;
+    width: fit-content;
 }
 
 .actionsheet-view-container {
-  position: absolute;
-  bottom: 0px;
-  @include resolve-dir(left, 0px);
-  width: 100%;
-  min-height: 20px;
-  padding: 20px 20px 0px 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  box-shadow: 1px -1px 10px grey;
-  background-color: white;
-  .theme-dark & {
-    background-color: $black-color;
-  }
+    position: absolute;
+    bottom: 0px;
+    @include resolve-dir(left, 0px);
+    width: 100%;
+    min-height: 20px;
+    padding: 20px 20px 0px 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 1px -1px 10px grey;
+    background-color: white;
+    .theme-dark & {
+        background-color: $black-color;
+    }
 }
 
 .actionsheet-item-container {
-  cursor: pointer;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  border-bottom: 0.5px solid rgba(211, 211, 211, 0.7);
+    cursor: pointer;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 0.5px solid rgba(211, 211, 211, 0.7);
 }
 
 .actionsheet-item-icon {
-  margin: 0px 10px;
+    margin: 0px 10px;
 }
 
 .actionsheet-item-label {
-  font-weight: 400;
-  @include resolve-dir(margin-left, 8px);
+    font-weight: 400;
+    @include resolve-dir(margin-left, 8px);
 }
 
 .menu-items {
-  padding: 0px !important;
-  &:focus {
-    outline-width: 1px !important;
-  }
+    padding: 0px !important;
+    &:focus {
+        outline-width: 1px !important;
+    }
 }
 
 .menu-item {
-  .theme-contrast & {
-    &:focus {
-      background-color: #ffff01;
+    .theme-contrast & {
+        &:focus {
+            background-color: #ffff01;
+        }
     }
-  }
 }
 
 .menu-default {
-  border: none !important;
-  width: fit-content;
-  padding: 0px !important;
+    border: none !important;
+    width: fit-content;
+    padding: 0px !important;
 }
 
 .menu-default li {
-  background-color: transparent;
-  box-shadow: none;
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .hidden-dismiss-button {
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
 }
 
 .hide-default-dialog-container {
-  background-color: transparent !important;
+    background-color: transparent !important;
 }

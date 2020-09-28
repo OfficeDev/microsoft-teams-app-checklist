@@ -89,7 +89,7 @@ export class ActionSdkHelper {
             return { success: true, dataRows: response.dataRows, continuationToken: response.continuationToken };
         } catch (error) {
             Logger.logError("getActionDataRows Error: " + JSON.stringify(error));
-            return { success: false, error: error }
+            return { success: false, error: error };
         }
     }
 
@@ -106,7 +106,7 @@ export class ActionSdkHelper {
             return { success: true, responders: responseResponders.members };
         } catch (error) {
             Logger.logError("getResponderDetails Error: " + JSON.stringify(error));
-            return { success: false, error: error }
+            return { success: false, error: error };
         }
     }
 
@@ -213,7 +213,7 @@ export class ActionSdkHelper {
             return { success: true, addOrUpdateResponse: addOrUpdateResponse };
         } catch (error) {
             Logger.logError("addOrUpdateDataRows Error: " + JSON.stringify(error));
-            return { success: false, error: error }
+            return { success: false, error: error };
         }
     }
 

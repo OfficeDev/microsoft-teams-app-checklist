@@ -10,9 +10,6 @@ import { ActionSdkHelper } from "../../helper/ActionSdkHelper";
 
 interface IActionRootViewState {
     hostContext: actionSDK.ActionSdkContext;
-    stringsInitialized: boolean;
-    shouldBlockCreationInMeeting: boolean;
-    meetingMemberCount?: number;
 }
 export class ActionRootView extends React.Component<any, IActionRootViewState> {
 
@@ -20,8 +17,6 @@ export class ActionRootView extends React.Component<any, IActionRootViewState> {
         super(props);
         this.state = {
             hostContext: null,
-            stringsInitialized: false,
-            shouldBlockCreationInMeeting: false,
         };
     }
 

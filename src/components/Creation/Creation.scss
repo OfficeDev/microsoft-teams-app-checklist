@@ -1,42 +1,42 @@
 @import "../../scss/common.scss";
 
 .checklist-section {
-  padding-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 .title-container {
-  margin-bottom: 16px;
+    margin-bottom: 16px;
 }
 
 .title-box {
-  font-size: 18px;
-  font-weight: bold;
-  .client-mobile & {
-    font-size: 16px;
-  }
+    font-size: 18px;
+    font-weight: bold;
+    .client-mobile & {
+        font-size: 16px;
+    }
 }
 
 .settings-footer {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .add-options-cl-label {
-  font-size: 14px;
-  @include resolve-dir(padding-left, 20px);
+    font-size: 14px;
+    @include resolve-dir(padding-left, 20px);
 }
 
 .add-options-cl {
-  cursor: pointer;
-  @include resolve-dir(margin-left, 4px);
-  align-items: center;
-  display: flex;
-  flex-direction: row;
+    cursor: pointer;
+    @include resolve-dir(margin-left, 4px);
+    align-items: center;
+    display: flex;
+    flex-direction: row;
 }
 
 .settings-summary-mobile-container {
-  padding: 32px 0px;
+    padding: 32px 0px;
 }
 
 .pseudo-element:after {
-  content: "\200b";
+    content: "\200b";
 }

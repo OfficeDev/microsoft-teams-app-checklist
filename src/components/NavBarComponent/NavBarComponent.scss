@@ -1,44 +1,44 @@
 @import "../../scss/common.scss";
 
 .nav-title {
-  font-size: 16px;
-  flex: 1;
-  color: $black-color;
-  @include resolve-dir(margin-left, 16px);
+    font-size: 16px;
+    flex: 1;
+    color: $black-color;
+    @include resolve-dir(margin-left, 16px);
 
-  .theme-dark &,
-  .theme-contrast & {
-    color: #f3f2f1;
-  }
+    .theme-dark &,
+    .theme-contrast & {
+        color: #f3f2f1;
+    }
 }
 
 .nav-bar-item-default {
-  padding: 0px 16px;
+    padding: 0px 16px;
 }
 
 .nav-bar-item-text {
-  font-size: 16px;
-  @include resolve-dir(padding-left, 8px);
+    font-size: 16px;
+    @include resolve-dir(padding-left, 8px);
 }
 
 .nav-container {
-  display: flex;
-  align-items: center;
-  height: $nav-bar-height;
-  width: 100%;
-  position: fixed;
-  top: 0px;
-  @include resolve-dir(left, 0px);
-  z-index: 1000;
-  background-color: #f3f2f1;
+    display: flex;
+    align-items: center;
+    height: $nav-bar-height;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    @include resolve-dir(left, 0px);
+    z-index: 1000;
+    background-color: #f3f2f1;
 
-  .theme-dark &,
-  .theme-contrast & {
-    background-color: $black-color;
-  }
+    .theme-dark &,
+    .theme-contrast & {
+        background-color: $black-color;
+    }
 }
 
 $nav-bar-offset-height: $nav-bar-height - $parent-margin-top;
 .nav-bar-offset-height {
-  height: $nav-bar-offset-height;
+    height: $nav-bar-offset-height;
 }
