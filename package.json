@@ -30,7 +30,7 @@
     "devDependencies": {
         "@types/react": "16.8.0",
         "@types/react-dom": "16.8.0",
-        "action-package-deploy": "1.0.21",
+        "action-package-deploy": "1.0.22",
         "bestzip": "2.1.7",
         "clean-webpack-plugin": "3.0.0",
         "copy-webpack-plugin": "6.1.0",
