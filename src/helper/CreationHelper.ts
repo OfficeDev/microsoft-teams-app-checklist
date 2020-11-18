@@ -10,7 +10,7 @@ export function prepareActionInstance(actionContext: actionSDK.ActionSdkContext,
     let actionInstance: actionSDK.Action = {
         id: Utils.generateGUID(),
         displayName: title,
-        expiryTime: Constants.ACTION_INSTANCE_INDEFINITE_EXPIRY,
+        expiryTime: Constants.ACTION_INSTANCE_DEFAULT_EXPIRY,
         customProperties: [],
         permissions: {
             [actionSDK.ActionPermission.DataRowsUpdate]: [actionSDK.ActionRole.Member],

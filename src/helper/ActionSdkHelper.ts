@@ -11,12 +11,12 @@ export class ActionSdkHelper {
     */
     public static async getLocalizedStrings() {
         let request = new actionSDK.GetLocalizedStrings.Request();
-        try {
-            let response = await actionSDK.executeApi(request) as actionSDK.GetLocalizedStrings.Response;
+        let response = await actionSDK.executeApi(request) as actionSDK.GetLocalizedStrings.Response;
+        if (!response.error) {
             return { success: true, strings: response.strings };
-        } catch (error) {
-            Logger.logError(`fetchLocalization failed, Error: ${error.category}, ${error.code}, ${error.message}`);
-            return { success: false };
+        }
+        else {
+            Logger.logError(`fetchLocalization failed, Error: ${response.error.category}, ${response.error.code}, ${response.error.message}`);
         }
     }
 
@@ -25,12 +25,13 @@ export class ActionSdkHelper {
     * @param {actionSDK.Action} action instance which need to get created
     */
     public static async createActionInstance(action: actionSDK.Action) {
-        try {
-            let createRequest = new actionSDK.CreateAction.Request(action);
-            let createResponse = await actionSDK.executeApi(createRequest) as actionSDK.CreateAction.Response;
-            Logger.logInfo("CreateAction -Response " + JSON.stringify(createResponse));
-        } catch (error) {
-            Logger.logError("CreateAction Error: " + JSON.stringify(error));
+        let request = new actionSDK.CreateAction.Request(action);
+        let response = await actionSDK.executeApi(request) as actionSDK.CreateAction.Response;
+        if (!response.error) {
+            Logger.logInfo(`createActionInstance success - Request: ${JSON.stringify(request)} Response: ${JSON.stringify(response)}`);
+        }
+        else {
+            Logger.logError(`createActionInstance failed, Error: ${response.error.category}, ${response.error.code}, ${response.error.message}`);
         }
     }
 
@@ -54,12 +55,13 @@ export class ActionSdkHelper {
     *   @desc Service API Request for getting the actionContext
     */
     public static async getContext() {
-        try {
-            let response = await actionSDK.executeApi(new actionSDK.GetContext.Request()) as actionSDK.GetContext.Response;
+        let response = await actionSDK.executeApi(new actionSDK.GetContext.Request()) as actionSDK.GetContext.Response;
+        if (!response.error) {
             return { success: true, context: response.context };
-        } catch (error) {
-            Logger.logError("getContext Error: " + JSON.stringify(error));
-            return { success: false, error: error };
+        }
+        else {
+            Logger.logError(`GetContext failed, Error: ${response.error.category}, ${response.error.code}, ${response.error.message}`);
+            return { success: false, error: response.error };
         }
     }
 
@@ -68,13 +70,13 @@ export class ActionSdkHelper {
     *   @param context - actionInstance context: actionSDK.ActionSdkContext
     */
     public static async getActionInstance(actionId: string) {
-        try {
-            let getActionRequest = new actionSDK.GetAction.Request(actionId);
-            let response = await actionSDK.executeApi(getActionRequest) as actionSDK.GetAction.Response;
+        let getActionRequest = new actionSDK.GetAction.Request(actionId);
+        let response = await actionSDK.executeApi(getActionRequest) as actionSDK.GetAction.Response;
+        if (!response.error) {
             return { success: true, action: response.action };
-        } catch (error) {
-            Logger.logError("getActionInstance Error: " + JSON.stringify(error));
-            return { success: false, error: error };
+        } else {
+            Logger.logError(`GetAction failed, Error: ${response.error.category}, ${response.error.code}, ${response.error.message}`);
+            return { success: false, error: response.error };
         }
     }
 
@@ -82,14 +84,15 @@ export class ActionSdkHelper {
     *   @desc Service API Request for getting the actionInstance responses
     */
     public static async getActionDataRows(actionId, creatorId = null, continuationToken = null, pageSize = 30) {
-        try {
-            let getDataRowsRequest = new actionSDK.GetActionDataRows.Request(actionId, creatorId, continuationToken, pageSize);
-            let response = await actionSDK.executeApi(getDataRowsRequest) as actionSDK.GetActionDataRows.Response;
-            Logger.logInfo("getActionDataRows - Response" + JSON.stringify(response));
+        let request = new actionSDK.GetActionDataRows.Request(actionId, creatorId, continuationToken, pageSize);
+        let response = await actionSDK.executeApi(request) as actionSDK.GetActionDataRows.Response;
+        if (!response.error) {
+            Logger.logInfo(`getActionDataRows success - Request: ${JSON.stringify(request)} Response: ${JSON.stringify(response)}`);
             return { success: true, dataRows: response.dataRows, continuationToken: response.continuationToken };
-        } catch (error) {
-            Logger.logError("getActionDataRows Error: " + JSON.stringify(error));
-            return { success: false, error: error };
+        }
+        else {
+            Logger.logError(`getActionDataRows failed, Error: ${response.error.category}, ${response.error.code}, ${response.error.message}`);
+            return { success: false, error: response.error };
         }
     }
 
@@ -100,39 +103,14 @@ export class ActionSdkHelper {
     *   @return datarow responsder's details
     */
     public static async getResponderDetails(subscription: actionSDK.Subscription, userIds: string[]) {
-        try {
-            let requestResponders = new actionSDK.GetSubscriptionMembers.Request(subscription, userIds);
-            let responseResponders = await actionSDK.executeApi(requestResponders) as actionSDK.GetSubscriptionMembers.Response;
-            return { success: true, responders: responseResponders.members };
-        } catch (error) {
-            Logger.logError("getResponderDetails Error: " + JSON.stringify(error));
-            return { success: false, error: error };
+        let request = new actionSDK.GetSubscriptionMembers.Request(subscription, userIds);
+        let response = await actionSDK.executeApi(request) as actionSDK.GetSubscriptionMembers.Response;
+        if (!response.error) {
+            return { success: true, responders: response.members };
         }
-    }
-
-    /*
-    *   @desc Service API to Update the status of action Instance
-    *   @param updateInfo: object contains the new status for instance
-    *   @return updateActionResponse: {id, error, success}
-    */
-    public static async updateActionInstance(actionInstance, data) {
-        let action: actionSDK.ActionUpdateInfo = {
-            id: actionInstance.id,
-            version: actionInstance.version,
-            displayName: actionInstance.displayName,
-            dataTables: actionInstance.dataTables
-        };
-        for (let key in data) {
-            action[key] = data[key];
-        }
-        let getUpdateActionRequest = new actionSDK.UpdateAction.Request(action);
-        try {
-            let response = await actionSDK.executeApi(getUpdateActionRequest) as actionSDK.UpdateAction.Response;
-            Logger.logInfo("UpdateAction - Response: " + JSON.stringify(response));
-            actionInstance = await ActionSdkHelper.getActionInstance(actionInstance.id);
-            return actionInstance;
-        } catch (error) {
-            Logger.logError("UpdateAction - Error: " + JSON.stringify(error));
+        else {
+            Logger.logError(`GetSubscriptionMembers failed, Error: ${response.error.category}, ${response.error.code}, ${response.error.message}`);
+            return { success: false, error: response.error };
         }
     }
 
@@ -142,13 +120,14 @@ export class ActionSdkHelper {
     *   @return response: {id, error, success}
     */
     public static async deleteActionInstance(actionId) {
-        try {
-            let request = new actionSDK.DeleteAction.Request(actionId);
-            let response = await actionSDK.executeApi(request) as actionSDK.DeleteAction.Response;
+        let request = new actionSDK.DeleteAction.Request(actionId);
+        let response = await actionSDK.executeApi(request) as actionSDK.DeleteAction.Response;
+        if (!response.error) {
             return { success: true, deleteResponse: response };
-        } catch (error) {
-            Logger.logError("deleteActionInstance Error: " + JSON.stringify(error));
-            return { success: false, error: error };
+        }
+        else {
+            Logger.logError(`DeleteAction failed, Error: ${response.error.category}, ${response.error.code}, ${response.error.message}`);
+            return { success: false, error: response.error };
         }
 
     }
@@ -159,15 +138,16 @@ export class ActionSdkHelper {
     * @param fileName filename of csv
     */
     public static async downloadResponseAsCSV(actionId: string, fileName: string) {
-        try {
-            let downloadCSVRequest = new actionSDK.DownloadActionDataRowsResult.Request(
-                actionId,
-                fileName
-            );
-            let downloadResponse = await actionSDK.executeApi(downloadCSVRequest) as actionSDK.DownloadActionDataRowsResult.Response;
-            return downloadResponse;
-        } catch (error) {
-            Logger.logError("downloadResponseAsCSV Error: " + JSON.stringify(error)); //Add error log
+        let downloadCSVRequest = new actionSDK.DownloadActionDataRowsResult.Request(
+            actionId,
+            fileName
+        );
+        let response = await actionSDK.executeApi(downloadCSVRequest) as actionSDK.DownloadActionDataRowsResult.Response;
+        if (!response.error) {
+            return response;
+        }
+        else {
+            Logger.logError(`DeleteAction failed, Error: ${response.error.category}, ${response.error.code}, ${response.error.message}`);
         }
     }
     /*
@@ -176,13 +156,14 @@ export class ActionSdkHelper {
     *   @return updateActionResponse: {id, error, success}
     */
     public static async updateActionInstanceStatus(updateInfo) {
-        try {
-            let updateActionRequest = new actionSDK.UpdateAction.Request(updateInfo);
-            let updateActionResponse = await actionSDK.executeApi(updateActionRequest) as actionSDK.UpdateAction.Response;
-            return { success: true, updateResponse: updateActionResponse };
-        } catch (error) {
-            Logger.logError("updateActionInstanceStatus Error: " + JSON.stringify(error));
-            return { success: false, error: error };
+        let request = new actionSDK.UpdateAction.Request(updateInfo);
+        let response = await actionSDK.executeApi(request) as actionSDK.UpdateAction.Response;
+        if (!response.error) {
+            return { success: true, updateResponse: response };
+        }
+        else {
+            Logger.logError(`UpdateAction failed, Error: ${response.error.category}, ${response.error.code}, ${response.error.message}`);
+            return { success: false, error: response.error };
         }
     }
 
@@ -204,16 +185,17 @@ export class ActionSdkHelper {
      *   2. Update existing item details like value and status
      */
     public static async addOrUpdateDataRows(addRows, updateRows) {
-        try {
-            let addOrUpdateRowsRequest = new actionSDK.AddOrUpdateActionDataRows.Request(
-                addRows,
-                updateRows
-            );
-            let addOrUpdateResponse = await actionSDK.executeApi(addOrUpdateRowsRequest) as actionSDK.AddOrUpdateActionDataRows.Response;
-            return { success: true, addOrUpdateResponse: addOrUpdateResponse };
-        } catch (error) {
-            Logger.logError("addOrUpdateDataRows Error: " + JSON.stringify(error));
-            return { success: false, error: error };
+        let addOrUpdateRowsRequest = new actionSDK.AddOrUpdateActionDataRows.Request(
+            addRows,
+            updateRows
+        );
+        let response = await actionSDK.executeApi(addOrUpdateRowsRequest) as actionSDK.AddOrUpdateActionDataRows.Response;
+        if (!response.error) {
+            return { success: true, addOrUpdateResponse: response };
+        }
+        else {
+            Logger.logError(`AddOrUpdateActionDataRows failed, Error: ${response.error.category}, ${response.error.code}, ${response.error.message}`);
+            return { success: false, error: response.error };
         }
     }
 

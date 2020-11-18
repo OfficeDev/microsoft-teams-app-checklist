@@ -1,4 +1,5 @@
 {
+    "schemaVersion": 1,
     "properties": {
         "canAddMore": true,
         "values": [

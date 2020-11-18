@@ -34,21 +34,26 @@ import {
 
 import * as actionSDK from "@microsoft/m365-action-sdk";
 import { Utils } from "../utils/Utils";
-import { ActionError } from "../utils/ActionError";
 import { Localizer } from "../utils/Localizer";
-import {ProgressState} from "../utils/SharedEnum";
+import { ProgressState } from "../utils/SharedEnum";
 import { Constants } from "../utils/Constants";
 import { ActionSdkHelper } from "../helper/ActionSdkHelper";
+
 
 export enum HttpStatusCode {
     Created = 201,
     Unauthorized = 401,
     NotFound = 404,
 }
-const handleErrorResponse = (error: ActionError) => {
-    if (error.errorProps && error.errorProps.statusCode == HttpStatusCode.NotFound) {
+const handleErrorResponse = (error: actionSDK.ApiError) => {
+    if (error && error.code == "404") {
         setIsActionDeleted(true);
     }
+};
+
+const handleError = (error: actionSDK.ApiError, requestType: string) => {
+    handleErrorResponse(error);
+    setProgressState(ProgressState.Failed);
 };
 
 orchestrator(initialize, async () => {

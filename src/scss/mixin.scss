@@ -1,7 +1,7 @@
 @mixin main-margin {
     margin-top: $parent-margin-top;
     padding: $parent-padding-top $parent-padding-right $parent-padding-bottom $parent-padding-left;
-    @media only screen and (max-width: 480px) {
+    .client-mobile & {
         margin-top: $parent-margin-top-mobile;
         padding: $parent-padding-top $parent-padding-right-mobile $parent-padding-bottom $parent-padding-left-mobile;
     }
