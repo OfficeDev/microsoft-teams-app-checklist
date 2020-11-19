@@ -86,13 +86,13 @@
   "ResultNotificationPendingItem": "{0} élément sur 1 terminé",
   "AdaptiveCardFallbackTextForMW": "Revenir à la fenêtre principale pour afficher cette liste de vérification",
   "$manifest.description": "Créer une liste de contrôle partagée",
-  "$manifest.name": "Liste de vérification",
+  "$manifest.name": "Liste de contrôle",
   "$manifest.activities.activityTypes[0].description": "Une personne met à jour votre liste de contrôle",
   "$manifest.activities.activityTypes[1].description": "Synthèse quotidienne sur l'état d'achèvement des éléments",
   "$manifest.activities.activityTypes[2].description": "Une fois la liste de contrôle finalisée",
   "$manifest.msTeamsProps.name.full": "Liste de contrôle",
-  "$manifest.msTeamsProps.name.short": "Liste de vérification",
-  "$manifest.msTeamsProps.description.full": "Collaborez avec votre équipe en créant une liste de contrôle partagée dans un clavardage ou un canal​. Recherchez l’appli dans «…» sous la zone de rédaction du message​. Nommez votre liste de contrôle, entrez des éléments et vous êtes prêt à travailler​. Effectuez un suivi des éléments ouverts directement dans le clavardage. Ajoutez/supprimez/modifiez/complétez des éléments et gérez la liste de contrôle grâce à une expérience immersive",
+  "$manifest.msTeamsProps.name.short": "Liste de contrôle",
+  "$manifest.msTeamsProps.description.full": "Collaborez avec votre équipe en créant une liste de contrôle partagée dans une session de clavardage ou un canal​. Recherchez l’application dans «…» sous la zone de composition du message​. Nommez votre liste de contrôle, entrez des éléments et vous êtes prêt à travailler​. Effectuez un suivi des éléments ouverts directement dans la session de clavardage. Ajoutez/supprimez/modifiez/complétez des éléments et gérez la liste de contrôle grâce à une expérience immersive",
   "$manifest.msTeamsProps.description.short": "Créer une liste de contrôle partagée",
   "$manifest.views.LaunchView.header": "Créer une liste de contrôle"
 }

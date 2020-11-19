@@ -6,14 +6,15 @@
         "build": "webpack --env.mode=prod --env.watch=false",
         "start": "webpack --env.mode=dev --env.watch=true",
         "zip": "cd ./output && bestzip ./ActionPackage.zip *",
-        "deploy": "npm run build && npm run zip && upload-action-package -z ./output/ActionPackage.zip -t ./output/",
-        "update-teams-app": "npm run build && npm run zip && upload-action-package -z ./output/ActionPackage.zip",
-        "inner-loop": "create-inner-loop -p <packageId> -d ./output",
+        "deploy": "npm run build && npm run zip && upload-action-package -z ./output/ActionPackage.zip -t ./output/ --ld ./output/ --lp checklist",
+        "deploy-debug": "npm run build && npm run zip && upload-action-package -z ./output/ActionPackage.zip -t ./output/ -l debug --ld ./output/ --lp checklist",
+        "update-teams-app": "npm run build && npm run zip && upload-action-package -z ./output/ActionPackage.zip --ld ./output/ --lp checklist",
+        "inner-loop": "create-inner-loop -p <packageId> -d ./output --ld ./output/ --lp checklist",
         "lint": "tslint -c tslint.json -p tsconfig.json --fix"
     },
     "dependencies": {
         "@fluentui/react-northstar": "0.51.0",
-        "@microsoft/m365-action-sdk": "https://static.actions.office365.com/sdk/v1.0.3/microsoft-m365-action-sdk.tgz",
+        "@microsoft/m365-action-sdk": "https://static.actions.office365.com/sdk/v1.0.4/microsoft-m365-action-sdk.tgz",
         "css-loader": "2.1.1",
         "html2canvas": "1.0.0-rc.5",
         "mobx": "5.9.4",
@@ -29,7 +30,7 @@
     "devDependencies": {
         "@types/react": "16.8.0",
         "@types/react-dom": "16.8.0",
-        "action-package-deploy": "1.0.18",
+        "action-package-deploy": "1.0.22",
         "bestzip": "2.1.7",
         "clean-webpack-plugin": "3.0.0",
         "copy-webpack-plugin": "6.1.0",
