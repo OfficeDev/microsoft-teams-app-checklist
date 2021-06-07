@@ -1,0 +1,99 @@
+{
+    "schemaVersion": 1,
+    "properties": {
+        "canAddMore": true,
+        "values": [
+            {
+                "name": "Locale",
+                "valueType": "Text",
+                "isOptional": true
+            }
+        ]
+    },
+    "dataTables": {
+        "canAddMore": false,
+        "values": [
+            {
+                "name": "Default",
+                "rowsEditable": true,
+                "canUserAddMultipleRows": true,
+                "dataColumns": {
+                    "canAddMore": false,
+                    "values": [
+                        {
+                            "name": "checklistItem",
+                            "valueType": "Text",
+                            "allowNullValue": false,
+                            "isOptional": false
+                        },
+                        {
+                            "name": "status",
+                            "valueType": "SingleOption",
+                            "allowNullValue": false,
+                            "isOptional": false,
+                            "options": {
+                                "canAddMore": false,
+                                "values": [
+                                    {
+                                        "name": "ACTIVE",
+                                        "isOptional": false
+                                    },
+                                    {
+                                        "name": "COMPLETED",
+                                        "isOptional": false
+                                    },
+                                    {
+                                        "name": "DELETED",
+                                        "isOptional": false
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "completionTime",
+                            "valueType": "DateTime",
+                            "isOptional": false
+                        },
+                        {
+                            "name": "completionUser",
+                            "valueType": "UserId",
+                            "isOptional": false
+                        },
+                        {
+                            "name": "latestEditTime",
+                            "valueType": "DateTime",
+                            "isOptional": false
+                        },
+                        {
+                            "name": "latestEditUser",
+                            "valueType": "UserId",
+                            "isOptional": false
+                        },
+                        {
+                            "name": "creationTime",
+                            "valueType": "DateTime",
+                            "allowNullValue": false,
+                            "isOptional": false
+                        },
+                        {
+                            "name": "creationUser",
+                            "valueType": "UserId",
+                            "allowNullValue": false,
+                            "isOptional": false
+                        },
+                        {
+                            "name": "deletionTime",
+                            "valueType": "DateTime",
+                            "isOptional": false
+                        },
+                        {
+                            "name": "deletionUser",
+                            "valueType": "UserId",
+                            "isOptional": false
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

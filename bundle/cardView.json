@@ -1,0 +1,156 @@
+{
+    "schemaVersion": 1,
+    "view": {
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "type": "AdaptiveCard",
+        "version": "1.0",
+        "body": [{
+                "id": "expiry",
+                "type": "TextBlock",
+                "$when": "${not(equals(action.status, 'Active'))}",
+                "_$when.comment": "When Checklist is closed show this message",
+                "text": "${strings.ChecklistClosed}",
+                "color": "attention",
+                "size": "small",
+                "wrap": true
+            },
+            {
+                "id": "Title",
+                "type": "TextBlock",
+                "text": "${action.displayName}",
+                "_$text.comment": "Show Checklist title",
+                "size": "large",
+                "maxLines": 3,
+                "wrap": true,
+                "weight": "bolder",
+                "spacing": "small"
+            },
+            {
+                "id": "Count",
+                "type": "TextBlock",
+                "$when": "${greater(count(where(dataRows, x,or(x.columnValues['status'] == 'ACTIVE',x.columnValues['status'] == 'COMPLETED'))),0)}",
+                "_$when.comment": "Show when any ACTIVE or COMPLETED items are present in the checklist",
+                "text": "${formatString(strings.ManyItemsCompleted,count(where(dataRows,x,x.columnValues['status'] == 'COMPLETED')),count(where(dataRows, x,or(x.columnValues['status'] == 'COMPLETED',x.columnValues['status'] == 'ACTIVE'))))}",
+                "_$text.comment": "Show how many items are open or ACTIVE out of total items on checklist",
+                "size": "small",
+                "maxLines": 3,
+                "wrap": true,
+                "weight": "bolder",
+                "spacing": "small"
+            },
+            {
+                "id": "NoItem",
+                "type": "TextBlock",
+                "$when": "${equals(count(where(dataRows, x,or(x.columnValues['status'] == 'ACTIVE',x.columnValues['status'] == 'COMPLETED'))),0)}",
+                "_$when.comment":"When Checklist has no item in ACTIVE or COMPLETED state, or when checklist is empty",
+                "text": "${strings.NoItem}",
+                "size": "small",
+                "maxLines": 3,
+                "wrap": true,
+                "weight": "bolder",
+                "spacing": "small"
+            },
+            {
+                "id": "OpenItems",
+                "type": "TextBlock",
+                "$when": "${and(equals(action.status, 'Active'),greater(count(where(dataRows, x,x.columnValues['status'] == 'ACTIVE')),0))}",
+                "_$when.comment":"When checklist is active and count of open or ACTIVE elements is greater than 0, show 'Open Items' message",
+                "text": "${strings.OpenItems}",
+                "size": "small",
+                "maxLines": 3,
+                "wrap": true,
+                "spacing": "small"
+            },
+            {
+                "id": "NoOpenItems",
+                "type": "TextBlock",
+                "$when": "${and(and(equals(action.status, 'Active'),equals(count(where(dataRows, x,x.columnValues['status'] == 'ACTIVE')),0)),greater(count(where(dataRows, x,x.columnValues['status'] == 'COMPLETED')),0))}",
+                "_$when.comment":"When checklist is active and there is no ACTIVE item also all items have status as COMPLETED, show 'No Open Items' message",
+                "text": "${strings.NoOpenItems}",
+                "size": "small",
+                "maxLines": 3,
+                "wrap": true,
+                "spacing": "small"
+            },
+            {
+                "type": "Container",
+                "style": "emphasis",
+                "$when": "${and(equals(action.status, 'Active'),greater(count(where(dataRows, x,x.columnValues['status'] == 'ACTIVE')),0))}",
+                "_$when.comment":"When Checklist is active and count of open or ACTIVE items is greater than 0 then, show this container.",
+                "items": [{
+                    "id": "rows",
+                    "type": "Input.ChoiceSet",
+                    "style": "expanded",
+                    "isMultiSelect": true,
+                    "choices": [{
+                        "$data": "${subArray(sortBy(where(dataRows, x, x.columnValues['status'] == 'ACTIVE'), 'createTime'), 0, min(10, count(where(dataRows, x, x.columnValues['status'] == 'ACTIVE'))))}",
+                        "$when": "${equals(columnValues['status'],'ACTIVE')}",
+                        "title": "${columnValues['checklistItem']}",
+                        "value": "{'id':'${id}','columnValues':{'status':'COMPLETED','completionTime':'$Timestamp','completionUser':'$UserId','latestEditTime':'$Timestamp','latestEditUser':'$UserId'}}"
+                    }]
+                }]
+            },
+            {
+                "id": "LastModified",
+                "type": "TextBlock",
+                "$when": "${and(equals(action.status, 'Active'),greater(count(dataRows),0))}",
+                "_$when.comment": "When Checklist is active and there are greater than 0 items",
+                "text": "${if(and(equals(count(where(dataRows, x, x.columnValues['latestEditUser'] == '')),count(dataRows)),equals(count(where(dataRows, x,x.columnValues['status'] == 'ACTIVE')),count(dataRows))),strings.BeTheFirstOneToRespond,formatString(strings.LastUpdatedBy, lastResponder[0].displayName))}",
+                "_text.comment": "If no items have latestEditUser set and all the items' status are ACTIVE show 'BeTheFirstOneToRespond', else show 'LastUpdatedBy' message",
+                "size": "small",
+                "weight": "bolder",
+                "maxLines": 2,
+                "wrap": true,
+                "spacing": "small"
+            }
+        ],
+        "actions": [{
+                "id": "RespondButton",
+                "$when": "${and(equals(action.status, 'Active'),greater(count(where(dataRows, x,x.columnValues['status'] == 'ACTIVE')),0))}",
+                "_$when.comment": "When Checklist is active and count of ACTIVE or open items is greater than 0 in that case, show the 'Save Changes' button.",
+                "title": "${strings.Submit}",
+                "command": "SubmitCustomActionDataRows"
+            },
+            {
+                "id": "EditButton",
+                "title": "${if(equals(action.status, 'Active'),if(greater(count(where(dataRows, x,or(x.columnValues['status'] == 'ACTIVE',x.columnValues['status'] == 'COMPLETED'))),0),strings.EditChecklist,strings.AddItem),strings.Edit)}",
+                "_$title.comment": "If Checklist is active and there are items in it show 'Edit Checklist' button, else show 'Add Item' button if checklist is empty.If checklist is closed, show 'View Checklist' button.",
+                "command": "LaunchActionPackageView",
+                "parameters": {
+                    "viewName": "UpdateView"
+                }
+
+            }
+
+        ]
+    },
+    "data": {
+        "strings": {
+            "command": "GetLocalizedStrings"
+        },
+        "action": {
+            "command": "GetAction"
+        },
+        "dataRows": {
+            "command": "GetActionDataRows",
+            "parameters": {
+                "pageSize": 100
+            }
+        },
+        "creator": {
+            "command": "GetSubscriptionMembers",
+            "parameters": {
+                "memberIds": ["$ActionCreator"]
+            }
+        },
+        "lastResponder": {
+            "command": "GetSubscriptionMembers",
+            "parameters": {
+                "memberIds": [
+                    "$CurrentUser"
+                ]
+            }
+        }
+
+    }
+}

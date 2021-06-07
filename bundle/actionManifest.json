@@ -1,0 +1,104 @@
+{
+    "schemaVersion": 1,
+    "tag": "checklist-teams-app",
+    "id": "<packageId>",
+    "name": "Checklist",
+    "description": "Create a shared checklist",
+    "developer": {
+        "name": "<name>",
+        "websiteUrl": "<websiteUrl>",
+        "privacyUrl": "<privacyUrl>",
+        "termsOfUseUrl": "<termsOfUseUrl>"
+    },
+    "icon": "images/appIcon.png",
+    "version": "1.0.0",
+    "actionModel": "actionModel.json",
+    "showLoadingIndicator": true,
+    "views": {
+        "CardView": {
+            "sourceLocation": "cardView.json"
+        },
+        "LaunchView": {
+            "sourceLocation": "CreateView.html",
+            "header": "Create a new checklist"
+        },
+        "UpdateView": {
+            "sourceLocation": "UpdateView.html",
+            "header": "Edit the checklist"
+        }
+    },
+    "localizationInfo": {
+        "defaultLocale": "en-us",
+        "localeFiles": {
+            "en-us": "strings/strings.json",
+            "ar-sa": "strings/ar-sa/strings.json",
+            "bg-bg": "strings/bg-bg/strings.json",
+            "bn-in": "strings/bn-in/strings.json",
+            "ca-es": "strings/ca-es/strings.json",
+            "cs-cz": "strings/cs-cz/strings.json",
+            "cy-gb": "strings/cy-gb/strings.json",
+            "da-dk": "strings/da-dk/strings.json",
+            "de-de": "strings/de-de/strings.json",
+            "el-gr": "strings/el-gr/strings.json",
+            "en-gb": "strings/en-gb/strings.json",
+            "es-es": "strings/es-es/strings.json",
+            "es-mx": "strings/es-mx/strings.json",
+            "et-ee": "strings/et-ee/strings.json",
+            "fi-fi": "strings/fi-fi/strings.json",
+            "fil-ph": "strings/fil-ph/strings.json",
+            "fr-ca": "strings/fr-ca/strings.json",
+            "fr-fr": "strings/fr-fr/strings.json",
+            "gu-in": "strings/gu-in/strings.json",
+            "he-il": "strings/he-il/strings.json",
+            "hi-in": "strings/hi-in/strings.json",
+            "hr-hr": "strings/hr-hr/strings.json",
+            "hu-hu": "strings/hu-hu/strings.json",
+            "id-id": "strings/id-id/strings.json",
+            "is-is": "strings/is-is/strings.json",
+            "it-it": "strings/it-it/strings.json",
+            "ja-jp": "strings/ja-jp/strings.json",
+            "ka-GE": "strings/ka-GE/strings.json",
+            "kn-in": "strings/kn-in/strings.json",
+            "ko-kr": "strings/ko-kr/strings.json",
+            "lt-lt": "strings/lt-lt/strings.json",
+            "lv-lv": "strings/lv-lv/strings.json",
+            "ml-in": "strings/ml-in/strings.json",
+            "mr-in": "strings/mr-in/strings.json",
+            "nb-no": "strings/nb-no/strings.json",
+            "nl-nl": "strings/nl-nl/strings.json",
+            "nn-no": "strings/nn-no/strings.json",
+            "pl-pl": "strings/pl-pl/strings.json",
+            "pt-br": "strings/pt-br/strings.json",
+            "pt-pt": "strings/pt-pt/strings.json",
+            "ro-ro": "strings/ro-ro/strings.json",
+            "ru-ru": "strings/ru-ru/strings.json",
+            "sk-sk": "strings/sk-sk/strings.json",
+            "sl-si": "strings/sl-si/strings.json",
+            "sr-latn-rs": "strings/sr-latn-rs/strings.json",
+            "sv-se": "strings/sv-se/strings.json",
+            "ta-in": "strings/ta-in/strings.json",
+            "te-in": "strings/te-in/strings.json",
+            "th-th": "strings/th-th/strings.json",
+            "tr-tr": "strings/tr-tr/strings.json",
+            "uk-ua": "strings/uk-ua/strings.json",
+            "vi-vn": "strings/vi-vn/strings.json",
+            "zh-cn": "strings/zh-cn/strings.json",
+            "zh-tw": "strings/zh-tw/strings.json"
+        }
+    },
+    "msTeamsProps": {
+        "name": {
+            "short": "Checklist",
+            "full": "Checklist"
+        },
+        "description": {
+            "short": "Create a shared checklist",
+            "full": "Collaborate with your team by creating a shared checklist in a chat or channel.​ Find the app in \"…\" under the message compose box​. Name your checklist, enter items, and you're good to go. Keep track of open items right from chat​. Add/delete/edit/complete items and manage checklist through an immersive experience"
+        },
+        "icons": {
+            "color": "images/appIcon.png",
+            "outline": "images/outline.png"
+        },
+        "accentColor": "#4464ee"
+    }
+}
